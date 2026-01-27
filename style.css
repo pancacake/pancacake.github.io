@@ -588,7 +588,7 @@ h1::before {
   overflow-y: auto;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 0.9em 1.25em 0.9em 2.5em;
+  padding: 0.65em 1.25em 0.65em 2.5em;
   background: var(--card-bg);
 }
 
@@ -611,9 +611,9 @@ h1::before {
 }
 
 .news-list li {
-  margin-bottom: 0.6em;
-  line-height: 1.65;
-  padding-bottom: 0.6em;
+  margin-bottom: 0.35em;
+  line-height: 1.5;
+  padding-bottom: 0.35em;
   border-bottom: 1px dashed var(--border-color);
   font-size: 0.95em;
 }
