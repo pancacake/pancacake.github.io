@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 /main.tex
-
+bio.drawio
 # Build output
 dist/
 
