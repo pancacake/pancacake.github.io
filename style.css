@@ -741,6 +741,32 @@ h1::before {
   line-height: 1.5;
 }
 
+.opensource-links {
+  margin: 0.5em 0 0;
+  font-size: 0.9em;
+}
+
+.opensource-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 0.3em 0.7em;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.opensource-links a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.opensource-links a i {
+  font-size: 0.85em;
+}
+
 /* ==========================================================================
    Publications
    ========================================================================== */
