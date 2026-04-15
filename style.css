@@ -9,8 +9,9 @@
   /* Typography - IBM Plex for modern academic feel */
   --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-content: "Lora", "Georgia", "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", Monaco, Consolas, monospace;
-  --doc-font-size: 15px;
+  --doc-font-size: 16px;
   
   /* Colors - refined palette (Light Theme) */
   --gray: #6b7280;
@@ -38,11 +39,11 @@
   --avatar-bg: white;
   
   /* Layout */
-  --max-width: 1200px;
-  --sidebar-width: 220px;
+  --max-width: 1280px;
+  --sidebar-width: 260px;
   
   /* Other */
-  --border-radius: 6px;
+  --border-radius: 8px;
   --transition: all 0.2s ease-in-out;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -93,6 +94,9 @@ html {
 body {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   color: var(--text-color);
   font-family: var(--font-sans);
   line-height: 1.65;
@@ -116,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin-top: 1.5em;
-  font-size: 1.5em;
+  font-size: 1.35em;
   padding-bottom: 0.5em;
   border-bottom: 2px solid var(--border-color);
 }
@@ -127,14 +131,16 @@ h1 i {
 
 h2 { font-size: 1.25em; }
 h3 { 
-  font-size: 1.05em;
+  font-size: 1.1em;
   font-weight: 500;
   color: var(--gray);
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
 }
 h4, h5, h6 { font-size: 1em; }
 
 p {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.75em;
 }
 
 a {
@@ -156,7 +162,7 @@ ul {
 }
 
 ul li {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.65em;
 }
 
 strong {
@@ -190,7 +196,7 @@ img {
 .masthead__inner-wrap {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.6em 1.5em;
+  padding: 0.35em 1.5em 0.15em;
   font-family: var(--font-sans);
 }
 
@@ -202,7 +208,8 @@ img {
 
 .greedy-nav {
   position: relative;
-  min-width: 250px;
+  flex: 1;
+  min-width: 0;
   background: transparent;
 }
 
@@ -255,14 +262,27 @@ img {
 }
 
 .greedy-nav a {
-  display: block;
-  margin: 0 0.9rem;
-  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin: 0 0.85rem;
+  padding: 0.3rem 0;
   color: var(--gray);
   text-decoration: none;
-  font-size: 0.95em;
+  font-size: 1.02em;
   font-weight: 500;
   letter-spacing: 0;
+}
+
+.greedy-nav a i {
+  font-size: 0.9em;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.greedy-nav a:hover i,
+.greedy-nav a.active i {
+  opacity: 1;
 }
 
 .greedy-nav a:hover {
@@ -278,6 +298,18 @@ img {
   display: inline-block;
   list-style: none;
   white-space: nowrap;
+  position: relative;
+}
+
+.visible-links li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1em;
+  width: 1px;
+  background: var(--border-color);
 }
 
 .visible-links li:first-child {
@@ -389,11 +421,17 @@ img {
 #main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2em 1.5em 0;
+  padding: 3em 2em 0;
   display: flex;
-  gap: 2.5em;
+  flex: 1;
+  gap: 3.5em;
+  width: 100%;
   animation: intro 0.3s both;
   animation-delay: 0.35s;
+}
+
+#main.no-sidebar {
+  max-width: 1000px;
 }
 
 /* ==========================================================================
@@ -413,10 +451,11 @@ img {
   display: block;
   width: 100%;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .author__avatar img {
-  max-width: 170px;
+  max-width: 200px;
   min-width: 75px;
   border-radius: 50%;
   padding: 4px;
@@ -438,16 +477,16 @@ img {
 }
 
 .author__name {
-  margin: 12px 0 6px;
+  margin: 14px 0 8px;
   font-family: var(--font-sans);
-  font-size: 1.35em;
+  font-size: 1.5em;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-color);
 }
 
 .author__bio {
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   font-size: 0.95em;
   color: var(--muted-text);
   font-weight: 450;
@@ -470,7 +509,7 @@ img {
 
 .author__urls li {
   white-space: nowrap;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .author__urls a {
@@ -543,20 +582,62 @@ img {
 
 .page__content {
   width: 100%;
+  font-family: var(--font-content);
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+  color: var(--text-color);
+}
+
+.page__content > :first-child {
+  margin-top: 0;
 }
 
 .page__content p {
   font-size: 1em;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--dark-gray);
+  margin-bottom: 0.9em;
+}
+
+.page__content strong {
+  font-weight: 600;
+}
+
+.page__content em {
+  font-style: italic;
+}
+
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4,
+.page__content h5,
+.page__content h6 {
+  font-family: var(--font-sans);
+}
+
+.page__content ul,
+.page__content ol {
+  line-height: 1.65;
+}
+
+.page__content li {
+  margin-bottom: 0.5em;
 }
 
 .page__content a {
   text-decoration: underline;
+  text-decoration-color: rgba(29, 78, 216, 0.3);
+  text-underline-offset: 2.5px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s ease;
 }
 
 .page__content a:hover {
   text-decoration: underline;
+  text-decoration-color: var(--link-hover-color);
 }
 
 /* Anchor offset for sticky header */
@@ -584,11 +665,11 @@ h1::before {
    ========================================================================== */
 .news-list {
   padding-left: 2em;
-  max-height: 165px; /* ~4 lines */
+  max-height: 240px;
   overflow-y: auto;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 0.65em 1.25em 0.65em 2.5em;
+  padding: 1em 1.5em 1em 2.75em;
   background: var(--card-bg);
 }
 
@@ -611,11 +692,11 @@ h1::before {
 }
 
 .news-list li {
-  margin-bottom: 0.35em;
-  line-height: 1.5;
-  padding-bottom: 0.35em;
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+  padding-bottom: 0.5em;
   border-bottom: 1px dashed var(--border-color);
-  font-size: 0.95em;
+  font-size: 0.92em;
 }
 
 .news-list li:last-child {
@@ -637,26 +718,28 @@ h1::before {
 .opensource-box {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.75em;
 }
 
 .opensource-item {
-  padding: 1.25em 1.5em;
+  padding: 0.65em 1.5em;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background: var(--card-bg);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  font-size: 0.95em;
+  line-height: 1.55;
 }
 
 .opensource-item.with-logo {
   display: flex;
   align-items: center;
-  gap: 1.5em;
+  gap: 1.25em;
 }
 
 .opensource-logo {
   flex-shrink: 0;
-  width: 100px;
+  width: 90px;
 }
 
 .opensource-logo img {
@@ -686,7 +769,7 @@ h1::before {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.75em;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.35em;
 }
 
 .opensource-title {
@@ -729,10 +812,10 @@ h1::before {
 
 
 .opensource-authors {
-  margin: 0 0 0.35em;
+  margin: 0 0 0.2em;
   font-size: 0.92em;
   color: var(--dark-gray);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .opensource-desc {
@@ -743,7 +826,7 @@ h1::before {
 }
 
 .opensource-links {
-  margin: 0.5em 0 0;
+  margin: 0.3em 0 0;
   font-size: 0.9em;
 }
 
@@ -772,9 +855,12 @@ h1::before {
    Publications
    ========================================================================== */
 .pub-note {
-  font-size: 0.9em;
+  font-size: 0.88em;
   color: var(--gray);
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+  font-style: italic;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75em;
 }
 
 .pub-list {
@@ -800,7 +886,7 @@ h1::before {
   align-items: flex-start;
   flex-wrap: wrap;
   border-bottom: 1px solid var(--border-color);
-  padding: 1.5em 0;
+  padding: 1.25em 0;
   gap: 1.5em;
   transition: background-color 0.25s ease;
   border-radius: var(--border-radius);
@@ -829,7 +915,7 @@ h1::before {
 
 .paper-box-image img {
   width: 100%;
-  max-width: 280px;
+  max-width: 250px;
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -849,8 +935,15 @@ h1::before {
   flex: 1;
   min-width: 0;
   order: 1;
-  line-height: 1.75;
+  line-height: 1.8;
   font-size: 0.95em;
+}
+
+.paper-box-text > a:first-child {
+  font-family: var(--font-serif);
+  font-size: 1.05em;
+  line-height: 1.4;
+  text-decoration: none;
 }
 
 .paper-box-text a {
@@ -937,13 +1030,57 @@ h1::before {
   vertical-align: baseline;
 }
 
+/* ==========================================================================
+   Page Motto — sub-page header quote
+   ========================================================================== */
+.page-motto {
+  position: relative;
+  margin-bottom: 2em;
+  padding: 1.2em 1.35em;
+  background: var(--lighter-gray);
+  border-radius: var(--border-radius);
+  color: var(--muted-text);
+  font-family: var(--font-content);
+  font-style: normal;
+  font-size: 0.92em;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  animation: intro 0.6s ease-out both;
+}
+
+.page-motto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.35em;
+  width: 1.8em;
+  height: 2px;
+  background: var(--accent-color);
+  border-radius: 1px;
+  opacity: 0.4;
+}
+
+.page-motto p {
+  margin: 0;
+}
+
+.page-motto p + p {
+  margin-top: 0.65em;
+}
+
+.page-motto .motto-source {
+  display: block;
+  text-align: right;
+  font-size: 0.88em;
+  opacity: 0.6;
+}
 
 /* ==========================================================================
    Footer
    ========================================================================== */
 .page__footer {
-  margin-top: 4em;
-  padding: 2.5em 1em;
+  margin-top: 1.5em;
+  padding: 1.25em 1em;
   background: var(--footer-bg);
   text-align: center;
   border-top: 1px solid var(--border-color);
@@ -962,13 +1099,31 @@ h1::before {
 }
 
 .visitor-count {
-  margin-top: 0.5em !important;
-  font-size: 0.8em !important;
-  opacity: 0.8;
+  margin-top: 0.25em !important;
+  font-size: 0.78em !important;
+  opacity: 0.7;
 }
 
 .visitor-count i {
   margin-right: 0.25em;
+}
+
+/* ==========================================================================
+   Globe (Visitor Map)
+   ========================================================================== */
+.globe-container {
+  margin-top: 1em;
+  padding-top: 0.75em;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  height: 195px;
+}
+
+.globe-container > * {
+  transform: scale(0.65);
+  transform-origin: top center;
 }
 
 /* ==========================================================================
@@ -998,8 +1153,8 @@ h1::before {
   .paper-box-image {
     justify-content: flex-start;
     width: auto;
-    min-width: 200px;
-    max-width: 280px;
+    min-width: 180px;
+    max-width: 250px;
     order: 1;
   }
   
@@ -1074,6 +1229,12 @@ h1::before {
   .author__urls_sm {
     display: block;
   }
+
+  .globe-container {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Small screens */
@@ -1147,7 +1308,7 @@ h1::before {
   }
   
   h1 {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
   
   .paper-box {
@@ -1160,7 +1321,7 @@ h1::before {
   }
   
   .opensource-logo {
-    width: 80px;
+    width: 90px;
     margin: 0 auto 1em;
   }
   
