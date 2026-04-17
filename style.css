@@ -432,6 +432,7 @@ img {
 
 #main.no-sidebar {
   max-width: 1000px;
+  padding-top: 1.75em;
 }
 
 /* ==========================================================================
@@ -1035,8 +1036,8 @@ h1::before {
    ========================================================================== */
 .page-motto {
   position: relative;
-  margin-bottom: 2em;
-  padding: 1.2em 1.35em;
+  margin-bottom: 1.25em;
+  padding: 1em 1.35em;
   background: var(--lighter-gray);
   border-radius: var(--border-radius);
   color: var(--muted-text);
