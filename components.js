@@ -59,7 +59,6 @@ export function renderSidebar() {
       </div>
       <div class="author__content">
         <h3 class="author__name">Bingxi Zhao</h3>
-        <p class="author__bio">Frank</p>
       </div>
       <div class="author__urls-wrapper">
         <ul class="author__urls social-icons">
