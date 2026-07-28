@@ -1,9 +1,15 @@
 # Dependencies
 node_modules/
-/main.tex
-bio.drawio
+
 # Build output
 dist/
+
+# Local source files (not part of the site)
+bio.drawio
+/main.tex
+
+# Tooling
+.claude/
 
 # IDE
 .vscode/
@@ -13,6 +19,7 @@ dist/
 
 # OS
 .DS_Store
+._*
 Thumbs.db
 
 # Logs
@@ -23,4 +30,4 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
-
+*.local
