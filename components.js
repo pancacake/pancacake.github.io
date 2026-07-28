@@ -16,7 +16,6 @@ export function renderMasthead() {
     { label: 'Home', href: '/', lg: true, icon: 'fas fa-home' },
     { label: 'Open-source', href: '/open-source.html', icon: 'fab fa-github' },
     { label: 'Publications', href: '/publications.html', icon: 'fas fa-file-alt' },
-    { label: 'Honors', href: '/honors.html', icon: 'fas fa-award' },
     { label: 'Experiences', href: '/experiences.html', icon: 'fas fa-briefcase' },
   ];
 

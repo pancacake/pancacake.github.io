@@ -996,34 +996,6 @@ h1::before {
   line-height: 1.6;
 }
 
-/* Awards inline list */
-.awards-inline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em 1em;
-  list-style: none;
-  padding-left: 0;
-  margin: 0.5em 0;
-}
-
-.awards-inline li {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35em 0.85em;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 20px;
-  font-size: 0.9em;
-  color: var(--dark-gray);
-  margin-bottom: 0;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.awards-inline li:hover {
-  border-color: var(--light-gray);
-  box-shadow: var(--shadow-sm);
-}
-
 /* Piano flat symbol styling */
 .flat-symbol {
   font-family: "Times New Roman", serif;
