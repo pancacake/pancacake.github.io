@@ -6,40 +6,38 @@
    Variables
    ========================================================================== */
 :root {
-  /* Typography - IBM Plex for modern academic feel */
-  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
-  --font-content: "Lora", "Georgia", "Times New Roman", serif;
+  /* Typography - single serif family, set once on body and inherited everywhere */
+  --font-main: "Lora", Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", Monaco, Consolas, monospace;
   --doc-font-size: 16px;
   
-  /* Colors - refined palette (Light Theme) */
-  --gray: #6b7280;
-  --dark-gray: #374151;
-  --light-gray: #9ca3af;
-  --lighter-gray: #f3f4f6;
-  
-  --body-color: #fafbfc;
+  /* Colors - neutral grayscale, no blue cast (Light Theme) */
+  --gray: #6e6e6e;
+  --dark-gray: #222222;
+  --light-gray: #a3a3a3;
+  --lighter-gray: #f4f4f4;
+
+  --body-color: #fdfdfd;
   --background-color: #fff;
-  --text-color: #1f2937;
-  --muted-text: #6b7280;
-  --border-color: #e5e7eb;
-  
-  --primary-color: #4b5563;
+  --text-color: #111111;
+  --muted-text: #6e6e6e;
+  --border-color: #e6e6e6;
+
+  --primary-color: #4a4a4a;
   --accent-color: #2563eb;
-  --link-color: #1d4ed8;
-  --link-hover-color: #1e40af;
+  --link-color: #2a7ae2;
+  --link-hover-color: #1a5fc0;
   
-  /* Card and section backgrounds */
-  --card-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  --card-hover-bg: rgba(241, 245, 249, 0.6);
-  --footer-bg: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+  /* Card and section backgrounds - neutral, no gradients */
+  --card-bg: #fff;
+  --card-hover-bg: rgba(0, 0, 0, 0.02);
+  --footer-bg: transparent;
   --masthead-bg: rgba(255, 255, 255, 0.95);
-  --avatar-border: #e5e7eb;
+  --avatar-border: #e6e6e6;
   --avatar-bg: white;
   
   /* Layout */
-  --max-width: 1280px;
+  --max-width: 1080px;
   --sidebar-width: 260px;
   
   /* Other */
@@ -53,29 +51,29 @@
    Dark Theme
    ========================================================================== */
 html.dark-theme {
-  --gray: #9ca3af;
-  --dark-gray: #d1d5db;
-  --light-gray: #6b7280;
-  --lighter-gray: #374151;
-  
-  --body-color: #111827;
-  --background-color: #1f2937;
-  --text-color: #f3f4f6;
-  --muted-text: #9ca3af;
-  --border-color: #374151;
-  
-  --primary-color: #9ca3af;
+  --gray: #8a8a8a;
+  --dark-gray: #e3e3e3;
+  --light-gray: #575757;
+  --lighter-gray: #1f1f1f;
+
+  --body-color: #121212;
+  --background-color: #1a1a1a;
+  --text-color: #f5f5f5;
+  --muted-text: #8a8a8a;
+  --border-color: #2c2c2c;
+
+  --primary-color: #8a8a8a;
   --accent-color: #60a5fa;
   --link-color: #60a5fa;
   --link-hover-color: #93c5fd;
-  
-  /* Card and section backgrounds */
-  --card-bg: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-  --card-hover-bg: rgba(55, 65, 81, 0.6);
-  --footer-bg: linear-gradient(180deg, #1f2937 0%, #111827 100%);
-  --masthead-bg: rgba(17, 24, 39, 0.95);
-  --avatar-border: #4b5563;
-  --avatar-bg: #374151;
+
+  /* Card and section backgrounds - cards sit above the page, no gradients */
+  --card-bg: #1a1a1a;
+  --card-hover-bg: rgba(255, 255, 255, 0.04);
+  --footer-bg: transparent;
+  --masthead-bg: rgba(18, 18, 18, 0.95);
+  --avatar-border: #2c2c2c;
+  --avatar-bg: #1a1a1a;
 }
 
 /* ==========================================================================
@@ -98,23 +96,17 @@ body {
   flex-direction: column;
   min-height: 100vh;
   color: var(--text-color);
-  font-family: var(--font-sans);
+  font-family: var(--font-main);
   line-height: 1.65;
   font-weight: 400;
-  letter-spacing: -0.01em;
   background-color: var(--body-color);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   margin: 1.25em 0 0.5em;
   line-height: 1.3;
-  font-family: var(--font-sans);
   font-weight: 600;
-  letter-spacing: -0.02em;
   color: var(--dark-gray);
 }
 
@@ -196,8 +188,7 @@ img {
 .masthead__inner-wrap {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0.35em 1.5em 0.15em;
-  font-family: var(--font-sans);
+  padding: 0.35em 2em 0.15em;
 }
 
 .masthead__menu ul {
@@ -386,7 +377,12 @@ img {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  padding: 0.5rem;
+  /* 44x44 so it is actually hittable with a thumb */
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: 0;
   outline: none;
   background-color: var(--primary-color);
@@ -431,7 +427,6 @@ img {
 }
 
 #main.no-sidebar {
-  max-width: 1000px;
   padding-top: 1.75em;
 }
 
@@ -478,11 +473,9 @@ img {
 }
 
 .author__name {
-  margin: 14px 0 8px;
-  font-family: var(--font-sans);
+  margin: 14px 0 12px;
   font-size: 1.5em;
   font-weight: 600;
-  letter-spacing: -0.01em;
   color: var(--text-color);
 }
 
@@ -495,7 +488,6 @@ img {
 
 .author__urls-wrapper {
   display: block;
-  font-family: var(--font-sans);
 }
 
 .author__urls {
@@ -511,11 +503,11 @@ img {
 .author__urls li {
   white-space: nowrap;
   margin-bottom: 8px;
+  padding: 2px 0;
 }
 
 .author__urls a {
   display: block;
-  padding: 2px 0;
   color: inherit;
   font-size: 1em;
   text-decoration: none;
@@ -528,6 +520,28 @@ img {
 .author__urls i {
   margin-right: 5px;
   color: var(--gray);
+}
+
+/* Brand logos - sized to line up with Font Awesome's fa-fw box */
+.brand-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.1em;
+  margin-right: 5px;
+  vertical-align: -0.2em;
+}
+
+/* GitHub's mark has no colour version - flip it per theme */
+.brand-icon--github {
+  fill: #181717;
+}
+
+html.dark-theme .brand-icon--github {
+  fill: #f5f5f5;
+}
+
+.author__urls_sm .brand-icon {
+  margin-right: 0;
 }
 
 .author__description {
@@ -560,9 +574,14 @@ img {
 }
 
 .author__urls_sm a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   color: inherit;
   text-decoration: none;
-  margin-right: 0.5em;
+  margin-right: 0.15em;
 }
 
 .author__urls_sm a:hover {
@@ -583,11 +602,9 @@ img {
 
 .page__content {
   width: 100%;
-  font-family: var(--font-content);
-  font-size: 1.02rem;
+  font-size: 1.125rem;
   font-weight: 400;
-  line-height: 1.75;
-  letter-spacing: 0.005em;
+  line-height: 1.7;
   color: var(--text-color);
 }
 
@@ -597,9 +614,9 @@ img {
 
 .page__content p {
   font-size: 1em;
-  line-height: 1.75;
+  line-height: 1.7;
   color: var(--dark-gray);
-  margin-bottom: 0.9em;
+  margin-bottom: 1em;
 }
 
 .page__content strong {
@@ -608,15 +625,6 @@ img {
 
 .page__content em {
   font-style: italic;
-}
-
-.page__content h1,
-.page__content h2,
-.page__content h3,
-.page__content h4,
-.page__content h5,
-.page__content h6 {
-  font-family: var(--font-sans);
 }
 
 .page__content ul,
@@ -629,16 +637,14 @@ img {
 }
 
 .page__content a {
-  text-decoration: underline;
-  text-decoration-color: rgba(29, 78, 216, 0.3);
-  text-underline-offset: 2.5px;
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color 0.2s ease;
+  text-decoration: none;
 }
 
 .page__content a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--link-hover-color);
+  text-decoration-color: currentColor;
+  text-underline-offset: 2.5px;
+  text-decoration-thickness: 1px;
 }
 
 /* Anchor offset for sticky header */
@@ -711,6 +717,92 @@ h1::before {
   font-weight: 500;
   color: var(--muted-text);
   font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Home two-column CV blocks (Education / Research Experience)
+   ========================================================================== */
+.home-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 1.75em 2.5em;
+  margin-top: 2.25em;
+}
+
+/* Right column spans both rows so the "see full" link in row 2 of the left
+   column lands flush with the bottom of the last right-column entry. */
+.home-columns > .home-col:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.home-columns > .home-col:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.home-col h3 {
+  margin-top: 0;
+}
+
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Beats `.page__content li` on specificity */
+.cv-list .cv-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8em;
+  margin-bottom: 1.15em;
+}
+
+.cv-list .cv-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-logo {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Crests are fixed-colour brand assets - the dark ones need a light plate
+   to stay legible on the dark theme */
+html.dark-theme .cv-logo {
+  background: #f2f2f2;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.cv-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cv-org {
+  font-size: 0.95em;
+  line-height: 1.35;
+  color: var(--dark-gray);
+}
+
+.cv-detail,
+.cv-date {
+  font-size: 0.82em;
+  line-height: 1.5;
+  color: var(--muted-text);
+}
+
+.cv-more {
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+  align-self: end;
 }
 
 /* ==========================================================================
@@ -877,7 +969,7 @@ h1::before {
 }
 
 .pub-list li:hover {
-  background-color: #f8f9fa;
+  background-color: var(--card-hover-bg);
 }
 
 /* Paper Box - Featured Publication */
@@ -941,7 +1033,6 @@ h1::before {
 }
 
 .paper-box-text > a:first-child {
-  font-family: var(--font-serif);
   font-size: 1.05em;
   line-height: 1.4;
   text-decoration: none;
@@ -1013,7 +1104,6 @@ h1::before {
   background: var(--lighter-gray);
   border-radius: var(--border-radius);
   color: var(--muted-text);
-  font-family: var(--font-content);
   font-style: normal;
   font-size: 0.92em;
   line-height: 1.75;
@@ -1099,6 +1189,11 @@ h1::before {
   transform-origin: top center;
 }
 
+/* Collapsed until the globe actually draws - see loadExternalScripts() */
+.globe-container.globe-container--pending {
+  display: none;
+}
+
 /* ==========================================================================
    Animations
    ========================================================================== */
@@ -1148,10 +1243,22 @@ h1::before {
 @media screen and (max-width: 924px) {
   #main {
     flex-direction: column;
+    /* 3.5em is the sidebar/content column gutter; as vertical stacking it
+       wastes 56px of first-screen space */
+    gap: 1.75em;
   }
-  
+
+  /* The sidebar goes horizontal here, so home body text would otherwise stretch
+     to the full viewport - wider than the 700px it gets on desktop. Sub-pages
+     are excluded: they're full-width by design and must stay aligned with the
+     nav (their content is cards and short lines, not long prose). */
+  #main:not(.no-sidebar) .page__content {
+    max-width: 40rem;
+  }
+
   .sidebar {
     width: 100%;
+    margin-bottom: 0;
   }
   
   .profile_box {
@@ -1222,9 +1329,9 @@ h1::before {
   }
   
   .nav-toggle {
-    display: block;
+    display: flex;
   }
-  
+
   .visible-links {
     display: none;
   }
@@ -1261,16 +1368,16 @@ h1::before {
   }
   
   .control-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 0.85rem;
+    width: 40px;
+    height: 40px;
+    font-size: 0.95rem;
   }
   
   #main {
-    padding: 0 0.5em;
+    padding: 0 1.15em;
     margin-top: 0.5em;
   }
-  
+
   .profile_box {
     flex-wrap: wrap;
   }
@@ -1301,6 +1408,28 @@ h1::before {
   .opensource-header {
     justify-content: center;
   }
+
+  /* Nested scrolling is painful on touch - let the list run full length
+     instead of trapping it in a 240px box, and reclaim the wide indent. */
+  .news-list {
+    max-height: none;
+    overflow-y: visible;
+    padding: 1em 1em 1em 2.1em;
+  }
+
+  .home-columns {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 1.5em;
+  }
+
+  /* Single column: fall back to DOM order so the link ends up last */
+  .home-columns > .home-col:nth-child(1),
+  .home-columns > .home-col:nth-child(2),
+  .cv-more {
+    grid-column: 1;
+    grid-row: auto;
+  }
   
   .paper-box-image {
     order: 1;
@@ -1314,10 +1443,11 @@ h1::before {
 
 /* Very small screens */
 @media screen and (max-width: 480px) {
+  /* 13px used to drop body text to 14.6px - too small to read comfortably */
   html {
-    font-size: 13px;
+    font-size: 15px;
   }
-  
+
   .author__avatar img {
     max-width: 80px;
   }
