@@ -668,55 +668,29 @@ h1::before {
 }
 
 /* ==========================================================================
-   News List
+   News timeline - date column + entry, no card, no clipping
    ========================================================================== */
-.news-list {
-  padding-left: 2em;
-  max-height: 240px;
-  overflow-y: auto;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 1em 1.5em 1em 2.75em;
-  background: var(--card-bg);
+.news-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.news-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.news-list::-webkit-scrollbar-track {
-  background: var(--lighter-gray);
-  border-radius: 3px;
-}
-
-.news-list::-webkit-scrollbar-thumb {
-  background: var(--light-gray);
-  border-radius: 3px;
-}
-
-.news-list::-webkit-scrollbar-thumb:hover {
-  background: var(--gray);
-}
-
-.news-list li {
-  margin-bottom: 0.5em;
-  line-height: 1.6;
-  padding-bottom: 0.5em;
-  border-bottom: 1px dashed var(--border-color);
-  font-size: 0.92em;
-}
-
-.news-list li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.news-list em {
-  font-style: normal;
-  font-weight: 500;
-  color: var(--muted-text);
+.news-timeline li {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1.4em;
+  margin: 0;
+  padding: 0.28em 0;
   font-size: 0.9em;
+  line-height: 1.55;
+}
+
+.news-timeline time {
+  font-size: 0.9em;
+  color: var(--muted-text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ==========================================================================
@@ -1409,14 +1383,6 @@ html.dark-theme .cv-logo {
     justify-content: center;
   }
 
-  /* Nested scrolling is painful on touch - let the list run full length
-     instead of trapping it in a 240px box, and reclaim the wide indent. */
-  .news-list {
-    max-height: none;
-    overflow-y: visible;
-    padding: 1em 1em 1em 2.1em;
-  }
-
   .home-columns {
     grid-template-columns: 1fr;
     grid-template-rows: none;
@@ -1458,6 +1424,16 @@ html.dark-theme .cv-logo {
   
   ul {
     padding-inline-start: 1.5em;
+  }
+
+  /* A fixed date column eats ~30% of a 320px screen - stack instead */
+  .news-timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.1em;
+  }
+
+  .news-timeline time {
+    padding-top: 0;
   }
 }
 
