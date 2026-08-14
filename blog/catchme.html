@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatchMe: The Missing Layer of Personal Agent | Bingxi Zhao</title>
+  <meta name="description" content="Personal memory is the missing infrastructure layer for adaptive AI agents. CatchMe organises GUI activity into a hierarchical tree an LLM can reason over — no embeddings, no vector database.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥞</text></svg>">
+</head>
+<body>
+  <div id="masthead-container"></div>
+
+  <div id="main" class="no-sidebar" role="main">
+    <article class="page post" itemscope itemtype="http://schema.org/BlogPosting">
+      <div class="page__inner-wrap post-layout">
+        <section class="page__content" itemprop="text">
+
+          <p class="post-back"><a href="/blogs.html">&larr; All posts</a></p>
+
+          <header class="post-header">
+            <h1 class="post-title" itemprop="headline"><em>CatchMe:</em> The Missing Layer of Personal Agent</h1>
+            <p class="post-authors">Bingxi Zhao, Chao Huang</p>
+            <p class="post-affiliation">Data Intelligence Lab, The University of Hong Kong</p>
+            <p class="post-dateline">
+              <time datetime="2026-03">March 2026</time>
+              <a href="https://github.com/HKUDS/CatchMe" target="_blank"><i class="fab fa-github"></i>CatchMe</a>
+            </p>
+          </header>
+
+          <p>AI agents are growing remarkably capable. They write code, orchestrate workflows, browse the web, and manage files, all through increasingly powerful tool-use and skill-composition frameworks. Yet amid this rapid progress, a fundamental gap remains: <strong>agents know almost nothing about the person they serve.</strong></p>
+          <p>An agent can call a hundred APIs, but it cannot answer <em>"What was I working on before lunch?"</em> or <em>"When did I last read that arxiv paper?"</em>; it simply has no memory of the user's daily digital life. Skills, tools, and harness architectures can augment <em>what</em> an agent does; but understanding <em>who</em> it works for requires something these systems cannot provide: knowledge of the user's habits, context, and unspoken intent.</p>
+          <p>We argue that <strong>personal memory is the missing infrastructure layer</strong> for truly adaptive AI agents. Without it, agents adapt to tasks; with it, agents adapt to people.</p>
+
+          <h2>The Gap in Current Memory Systems</h2>
+          <h3>Agents Operate in CLI; Users Live in GUI</h3>
+          <p>The resurgence of CLI-based agent interaction is quietly reshaping the boundary between human and machine. As agents increasingly operate through terminal commands, code execution, and API calls, the graphical interface is no longer a shared workspace; it is becoming <em>exclusively the user's domain</em>. The tabs you browse, the documents you read, the paragraphs you highlight — this is context that no agent can observe through its own tool-use. And yet it is precisely this context that determines what the user cares about, what they are working on, and what they need help with. Personal GUI activity is, in a real sense, the last mile of information that agents cannot reach on their own.</p>
+          <h3>Statistics Without Semantics</h3>
+          <p>One family of existing approaches focuses on logging which applications you use and for how long. These systems produce useful time-tracking dashboards, but they capture no <em>meaning</em>. You can see that you spent three hours in your code editor — but not what you were editing, why you switched to the browser, or what you found there. The data is flat, aggregated, and disconnected from the semantic fabric of your day. It tells you <em>where</em> your time went, but not <em>what happened</em>.</p>
+          <h3>Data Without Structure</h3>
+          <p>Another family goes to the opposite extreme: continuous screen recording that captures everything on screen, then relies on vector-based retrieval, embedding OCR'd frames or text chunks and matching them against queries by similarity. This approach inherits fundamental limitations: semantic similarity is not the same as relevance; fixed-size chunking breaks contextual integrity; and the infrastructure cost of continuous recording, embedding, and indexing is substantial. You get a haystack of data, but the needle-finding mechanism is blunt.</p>
+          <h3>The Flat-Stream Assumption</h3>
+          <p>Beneath these differences, both paradigms share a deeper structural deficit: they treat the user's digital activity as a <strong>flat stream</strong>: a chronological sequence of events or frames with no inherent organization. But human computer use is not flat. It has sessions that begin and end, tasks that nest within tasks, focus shifts that carry meaning, and a natural hierarchy of applications, windows, and actions. When you switch from reading a paper to checking Slack and then return, that <em>return</em> carries context — context that a flat log discards entirely. A meaningful memory system should preserve this structure, not flatten it away.</p>
+          <p><strong>Our thesis:</strong> personal memory needs <em>structure</em>, not <em>similarity</em>. Instead of embedding everything into a vector space, we organize raw events into a navigable hierarchy that an LLM can reason over, much like a reader skims a table of contents before diving into the relevant chapter.</p>
+          <h2>CatchMe: Design Overview</h2>
+          <p>CatchMe is an always-on, fully local memory system that runs quietly in the background, captures what you see and do, and organizes everything into a <strong>hierarchical activity tree</strong> that both humans and AI agents can query in natural language. The design rests on three pillars.</p>
+          <h3>A Living Activity Tree</h3>
+          <p>Rather than logging events as a flat sequence, CatchMe structures your day into a five-level tree (<strong>Day → Session → App → Location → Action</strong>) that mirrors the natural rhythm of how people use computers. Sessions are split by idle gaps; within each session, activity is grouped by application, then by the specific tab, file, or window you were focused on, and finally by the individual actions (typing, clicking, scrolling) you performed there.</p>
+          <p>The tree's structural hierarchy is built by deterministic rules (window switches, idle timeouts, temporal clustering) with no LLM involved in deciding <em>where</em> a node belongs. But the <em>content</em> of each node is not raw event data: as events accumulate within a node, an LLM summarizes them into concise natural-language descriptions. These summaries propagate bottom-up: actions are summarized first, then parent locations, then sessions, so that every level of the tree carries semantically meaningful information, not just structural labels.</p>
+          <p>Crucially, this entire process is <strong>live and incremental</strong>. The tree does not get rebuilt from scratch at the end of the day. As you work, new events continuously flow in; the organizer extends the current session or opens a new one in real time; and once a node is "closed" (e.g., you switched away from an app), it is immediately enqueued for LLM summarization. The tree is always growing, always being enriched, a living document of your day that stays current minute by minute.</p>
+          <figure class="post-figure">
+            <div class="post-figure__frame">
+              <img src="/figs/blog/fig1_activity_tree.svg" alt="Snapshot of a CatchMe activity tree">
+            </div>
+            <figcaption>Fig 1. A snapshot of the activity tree. Gray nodes are completed and summarized; the orange dashed branch is the currently active session, growing as new events arrive.</figcaption>
+          </figure>
+          <h3>Tree Reasoning for Fragmented Personal Data</h3>
+          <p>Personal activity data is inherently fragmented (short bursts of typing, scattered clicks, fleeting tab switches) and buried in noise. Embedding-based retrieval struggles here: the chunks are too small and too heterogeneous to produce meaningful similarity signals. A keystroke sequence and the screenshot it relates to live in entirely different modalities; a 3-second glance at Slack has no semantic overlap with the deep-work session it interrupted.</p>
+          <p>CatchMe takes a different path: <strong>LLM-based reasoning over the tree structure</strong>. The hierarchy gives the LLM a reliable navigation scaffold, showing it which day, which session, which app to look in, while the LLM's reasoning filters out irrelevant noise within each branch, extracting only the details that matter. The tree ensures the search direction is right; the LLM ensures the signal-to-noise ratio is high.</p>
+          <p>This is a test-time approach: there is no pre-built knowledge graph or embedding index. The LLM reasons on demand, scoping by time, browsing the tree's table of contents, drilling into promising branches, and inspecting raw evidence (text or screenshots via vision) only when needed. If the context is insufficient, it iterates. This makes the system robust to the messiness of real-world activity data in a way that static retrieval cannot match.</p>
+          <p>Critically, the LLM is not limited to a single path through the tree. At every level (days, sessions, apps, locations) it can <strong>select multiple nodes simultaneously</strong>. When it reaches a Location, the system can read the file content directly from disk and inspect underlying action evidence: keystrokes, mouse events, and screenshots via vision. This multi-branch, multi-level traversal enables <strong>cross-temporal retrieval</strong>: evidence scattered across different days and different applications is collected in a single reasoning pass and synthesized into one coherent answer.</p>
+          <figure class="post-figure">
+            <div class="post-figure__frame">
+              <img src="/figs/blog/fig2_retrieval.svg" alt="Retrieval walkthrough over the activity tree">
+            </div>
+            <figcaption>Fig 2. Retrieval walkthrough for <em>"What did I change in retrieve.py this week?"</em> The LLM scopes to relevant days (steps 1–2), drills to matching Cursor locations (3–4), and inspects file content and action evidence across two days to produce a single answer (5).</figcaption>
+          </figure>
+          <h3>Plugging into the Agent Ecosystem</h3>
+          <p>Modern agent frameworks are rich with capabilities. Tools let agents execute shell commands, browse the web, and manipulate files. Skills package reusable workflows: code generation, search, browser automation. Knowledge bases provide RAG over documents, embeddings, and conversation history. Together, these give an agent a powerful repertoire of <em>what it can do</em> and <em>what it can know</em>.</p>
+          <p>But there is a category of context that none of these provide: <strong>who the agent is working for</strong>. No tool can tell the agent what you were reading ten minutes ago. No skill can retrieve which files you had open this morning. No knowledge base contains the fleeting Slack message you glanced at before switching to your editor. This personal, real-time, GUI-level context — the texture of your actual digital life — is invisible to every standard agent capability.</p>
+          <p>CatchMe fills this gap. It is an <strong>agent-native CLI tool</strong> designed to plug directly into any framework (Cursor, Claude Code, OpenClaw, or any other harness). The integration surface is a single command that any agent can invoke as a skill. When a user sends a request, the agent calls CatchMe to retrieve personal context — what the user was doing, reading, and writing — and folds that understanding into its reasoning. The agent doesn't need to understand trees or retrieval pipelines; it asks a question in natural language and gets a grounded answer.</p>
+          <p>Wherever there are people, there is GUI interaction; and wherever there is GUI interaction, there is personal context waiting to be understood. By fitting into the agent loop as a lightweight plugin, CatchMe makes it possible for <strong>any workflow, any application, any agent</strong> to draw on that context — transforming agents that adapt to tasks into agents that adapt to <em>people</em>.</p>
+          <figure class="post-figure">
+            <div class="post-figure__frame">
+              <img src="/figs/blog/fig3_agent_stack.svg" alt="CatchMe in the agent stack">
+            </div>
+            <figcaption>Fig 3. CatchMe in the agent stack. Existing capabilities (tools, skills, knowledge) sit inside the framework; CatchMe sits below, passively capturing GUI activity and feeding personal context upward via a single CLI call.</figcaption>
+          </figure>
+          <h2>Bridging the Gap</h2>
+          <h3>Mouse-Event-Driven Screenshots</h3>
+          <p>Continuous screen recording is expensive and generates enormous amounts of redundant data. CatchMe takes a different approach: <strong>screenshots are triggered by user actions</strong>. Every mouse click captures a full-screen image annotated with a crosshair, and every scroll session captures start and end frames. Each screenshot is stored as a full-screen overview and a zoomed detail crop around the action point. This makes every captured frame <em>meaningful</em>: it corresponds to a moment the user actively engaged with the screen, not an idle background frame.</p>
+          <h3>Time-Interval Clustering for Noise Reduction</h3>
+          <p>Raw events (individual keystrokes, mouse movements, clipboard changes) are noisy and voluminous. CatchMe clusters them into coherent action units based on <strong>temporal proximity</strong>: events that occur close together within the same location are grouped into a single Action node. LLM summarization operates on these clusters as the minimal unit, not on individual events. This dramatically reduces both noise and cost: the system summarizes meaningful activity chunks, not raw keystroke logs.</p>
+          <h3>Preserving GUI Semantics in Tree Structure</h3>
+          <p>The tree hierarchy naturally encodes relationships that flat event streams lose: which application was being used, within which file or URL, during which work session. The App → Location → Action nesting captures the <em>topology</em> of GUI use (the fact that you had three tabs open in Chrome, were editing two files in Cursor, and briefly checked Slack in between) as first-class structural information, not metadata to be reconstructed at query time.</p>
+          <h3>Brief Capture for Transient Context Switches</h3>
+          <p>Users frequently switch away from their primary window for a few seconds: checking a notification, glancing at a reference, copying a value. CatchMe's organizer detects these short-lived focus events and records them as <strong>briefs</strong> attached to the parent window span, rather than promoting them to full tree nodes. This preserves the relationship between a fleeting glance and the main task without polluting the tree structure with noise.</p>
+          <h3>Rule-Based Time Filtering</h3>
+          <p>Before any LLM call, the retrieval pipeline applies deterministic time-range filtering: temporal cues in the query ("this morning", "last Tuesday afternoon") are parsed and used to prune the tree down to only the relevant day and session nodes. This rule-based first pass eliminates the majority of the search space at zero cost, ensuring that the more expensive LLM reasoning operates on a tightly scoped context.</p>
+          <h3>Test-Time Reasoning Over Pre-Built Indices</h3>
+          <p>Unlike systems that construct a knowledge graph or embedding index at ingestion time, CatchMe defers all semantic reasoning to <strong>query time</strong>. The tree is structural scaffolding; meaning is extracted on demand by the LLM navigating it. This has a practical advantage: there is no stale index to maintain, no re-embedding when the model improves, and no upfront cost proportional to data volume. The system scales with query count, not data size.</p>
+          <h2>Conclusion</h2>
+          <p>The next generation of personal AI agents will be defined not by what tools they can use, but by <strong>how well they understand the person using them</strong>. CatchMe contributes to this vision by providing an always-on, lightweight, fully local memory layer that captures the user's digital footprint and organizes it into a structure that LLMs can reason over.</p>
+          <p>The core insight is that personal memory is a navigation problem, not a search problem. By structuring activity into a hierarchical tree and using LLM-based reasoning to traverse it, CatchMe achieves grounded, context-aware retrieval without vector databases, embedding pipelines, or pre-built knowledge graphs — all in ~200 MB of RAM, running entirely on the user's machine.</p>
+          <p>Your computer should remember everything. Now it can.</p>
+
+          <h2>References</h2>
+          <ol class="post-refs">
+            <li>HKUDS, "LightRAG: Simple and Fast Retrieval-Augmented Generation," 2024. <a href="https://github.com/HKUDS/LightRAG" target="_blank">github.com/HKUDS/LightRAG</a></li>
+            <li>VectifyAI, "PageIndex: Vectorless, Reasoning-based RAG," 2025. <a href="https://github.com/VectifyAI/PageIndex" target="_blank">github.com/VectifyAI/PageIndex</a></li>
+            <li>Alibaba, "PageAgent: In-page GUI Agent for Web Interfaces," 2025. <a href="https://github.com/alibaba/page-agent" target="_blank">github.com/alibaba/page-agent</a></li>
+            <li>Volcengine, "MineContext: Proactive Context-Aware AI Partner," 2025. <a href="https://github.com/volcengine/MineContext" target="_blank">github.com/volcengine/MineContext</a></li>
+            <li>HKUDS, "nanobot: Ultra-Lightweight Personal AI Assistant," 2025. <a href="https://github.com/HKUDS/nanobot" target="_blank">github.com/HKUDS/nanobot</a></li>
+            <li>ActivityWatch Contributors, "ActivityWatch: Open-Source Automated Time Tracker," 2024. <a href="https://github.com/ActivityWatch/activitywatch" target="_blank">github.com/ActivityWatch/activitywatch</a></li>
+            <li>Screenpipe Contributors, "Screenpipe: AI Memory for Your Screen," 2024. <a href="https://github.com/mediar-ai/screenpipe" target="_blank">github.com/mediar-ai/screenpipe</a></li>
+            <li>Yuka-friends, "Windrecorder: Personal Memory Search Engine for Windows," 2024. <a href="https://github.com/yuka-friends/Windrecorder" target="_blank">github.com/yuka-friends/Windrecorder</a></li>
+            <li>Arkohut, "Pensieve: Privacy-First Passive Recording," 2024. <a href="https://github.com/arkohut/pensieve" target="_blank">github.com/arkohut/pensieve</a></li>
+            <li>OpenRecall Contributors, "OpenRecall: Open-Source Digital Memory," 2024. <a href="https://github.com/openrecall/openrecall" target="_blank">github.com/openrecall/openrecall</a></li>
+            <li>Gurgeh, "Selfspy: Daemon for Recording Computer Activity," GitHub. <a href="https://github.com/gurgeh/selfspy" target="_blank">github.com/gurgeh/selfspy</a></li>
+          </ol>
+
+        </section>
+
+        <aside class="post-toc" id="post-toc" aria-label="Contents"></aside>
+      </div>
+    </article>
+  </div>
+
+  <div id="footer-container"></div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

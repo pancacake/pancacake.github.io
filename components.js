@@ -34,12 +34,15 @@ export function renderMasthead() {
     { label: 'Home', href: '/', lg: true, icon: 'fas fa-home' },
     { label: 'Open-source', href: '/open-source.html', icon: 'fab fa-github' },
     { label: 'Publications', href: '/publications.html', icon: 'fas fa-file-alt' },
+    { label: 'Blogs', href: '/blogs.html', icon: 'fas fa-pen-nib' },
     { label: 'Experiences', href: '/experiences.html', icon: 'fas fa-briefcase' },
   ];
 
   const links = items.map(item => {
+    // Individual posts live under /blog/, so keep Blogs lit while reading one
     const isActive = (item.href === '/' && current === '/') ||
-                     (item.href !== '/' && current === item.href);
+                     (item.href !== '/' && current === item.href) ||
+                     (item.href === '/blogs.html' && current.startsWith('/blog/'));
     const cls = item.lg
       ? 'masthead__menu-item masthead__menu-item--lg'
       : 'masthead__menu-item';

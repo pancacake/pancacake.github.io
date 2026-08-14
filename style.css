@@ -780,142 +780,591 @@ html.dark-theme .cv-logo {
 }
 
 /* ==========================================================================
-   Open-source Section
+   Open-source — Narrative ("What I build")
    ========================================================================== */
-.opensource-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75em;
+.build-story {
+  margin: 1.1em 0 2.4em;
 }
 
-.opensource-item {
-  padding: 0.65em 1.5em;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background: var(--card-bg);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  font-size: 0.95em;
-  line-height: 1.55;
+.build-entry {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 1.15em;
+  margin-bottom: 1.7em;
 }
 
-.opensource-item.with-logo {
-  display: flex;
-  align-items: center;
-  gap: 1.25em;
+.build-entry:last-child {
+  margin-bottom: 0;
 }
 
-.opensource-logo {
-  flex-shrink: 0;
-  width: 90px;
+.build-mark {
+  display: block;
+  width: 46px;
+  /* Nudge down so the mark sits optically level with the first text line */
+  padding-top: 0.3em;
 }
 
-.opensource-logo img {
+.build-mark img {
+  display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--border-radius);
   transition: transform 0.3s ease;
 }
 
-.opensource-logo a:hover img {
-  transform: scale(1.05);
+.page__content .build-mark:hover {
+  text-decoration: none;
 }
 
-.opensource-content {
-  flex: 1;
-  min-width: 0;
+.build-mark:hover img {
+  transform: scale(1.06);
 }
 
-.opensource-item:hover {
-  border-color: var(--light-gray);
-  box-shadow: var(--shadow-sm);
+/* The page runs the full nav width, which is fine for cards but gives prose a
+   ~97-character measure. Cap the narrative column only; the left edge, and so
+   the alignment with the nav, is untouched. */
+.build-text {
+  max-width: 42em;
 }
 
-.opensource-header {
+.build-story .build-text p {
+  margin: 0;
+}
+
+.build-meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.75em;
-  margin-bottom: 0.35em;
+  align-items: center;
+  gap: 0.3em 1.15em;
+  font-size: 0.85em;
+  color: var(--muted-text);
+  font-variant-numeric: tabular-nums;
 }
 
-.opensource-title {
-  font-size: 1.15em;
-  font-weight: 600;
-  color: var(--text-color);
-  text-decoration: none !important;
+.build-story .build-text .build-meta {
+  margin-top: 0.55em;
+}
+
+.stat {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
 }
 
-.opensource-title:hover {
+.stat i {
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+.stat b {
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.build-links {
+  display: inline-flex;
+  gap: 0.95em;
+}
+
+.build-links a,
+.tile__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38em;
   color: var(--link-color);
 }
 
-.opensource-title i {
-  font-size: 1.1em;
-}
-
-.github-badges {
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-}
-
-.github-badges a {
-  display: inline-flex;
-  text-decoration: none !important;
-}
-
-.github-badges img {
-  height: 20px;
-  transition: transform 0.2s ease;
-}
-
-.github-badges a:hover img {
-  transform: scale(1.05);
-}
-
-
-.opensource-authors {
-  margin: 0 0 0.2em;
-  font-size: 0.92em;
-  color: var(--dark-gray);
-  line-height: 1.45;
-}
-
-.opensource-desc {
-  margin: 0;
-  font-size: 0.92em;
-  color: var(--muted-text);
-  line-height: 1.5;
-}
-
-.opensource-links {
-  margin: 0.3em 0 0;
+.build-links a i,
+.tile__links a i {
   font-size: 0.9em;
+  opacity: 0.8;
 }
 
-.opensource-links a {
+/* ==========================================================================
+   Open-source — Mosaic ("Everything in the open")
+   ========================================================================== */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.8em;
+  margin-bottom: 1.5em;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.95em 1.15em;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  color: var(--text-color);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+              transform 0.25s ease, background-color 0.25s ease;
+}
+
+.tile:hover {
+  border-color: var(--light-gray);
+  background: var(--card-hover-bg);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+/* Column spans — seams are deliberately staggered row to row */
+.tile--w7 { grid-column: span 7; }
+.tile--w5 { grid-column: span 5; }
+.tile--w4 { grid-column: span 4; }
+.tile--w3 { grid-column: span 3; }
+
+.tile__top {
+  display: flex;
+  /* A fixed height keeps titles on one line across a row even when some tiles
+     carry a logo and their neighbours only carry a role tag */
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75em;
+  margin-bottom: 0.45em;
+}
+
+.tile__logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+/* An italic annotation rather than a UI pill. Letterspaced small caps is a
+   sans-serif idiom - in Lora it reads as stiff and gappy, while italic is how
+   a serif has always marked an aside. */
+.tile__role {
+  /* keeps the label flush right on tiles that carry no logo */
+  margin-left: auto;
+  font-size: 0.82em;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted-text);
+  white-space: nowrap;
+}
+
+.tile__role--lead {
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.tile__name {
+  margin-bottom: 0.32em;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.tile__name a {
+  color: inherit;
+}
+
+/* Stretched link: clicking anywhere on the tile opens the repo, while the
+   docs / pypi links below stay separately clickable via their own z-index */
+.tile__name a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.page__content .tile__name a:hover {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+.page__content .tile__desc {
+  margin: 0;
+  font-size: 0.88em;
+  line-height: 1.55;
+  color: var(--muted-text);
+}
+
+.tile__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3em 1em;
+  margin-top: auto;
+  padding-top: 0.7em;
+  font-size: 0.82em;
+  color: var(--muted-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tile__stat {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  color: var(--accent-color);
+}
+
+.tile__stat i {
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+.tile__stat b {
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.tile__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.tile__lang::before {
+  content: '';
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--lang-color, var(--light-gray));
+}
+
+.tile__links {
+  /* Lift above the stretched link so these stay individually clickable */
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  gap: 0.85em;
+  margin-left: auto;
+}
+
+.tile__lang[data-lang="Python"] { --lang-color: #3572a5; }
+.tile__lang[data-lang="TypeScript"] { --lang-color: #3178c6; }
+.tile__lang[data-lang="HTML"] { --lang-color: #e34c26; }
+.tile__lang[data-lang="C"] { --lang-color: #7a8288; }
+
+/* Size tiers — bigger project, bigger tile */
+.tile--xl {
+  min-height: 10.5em;
+}
+
+.tile--xl .tile__logo { width: 44px; height: 44px; }
+.tile--xl .tile__name { font-size: 1.35em; }
+.tile--xl .tile__desc { font-size: 0.92em; }
+
+.tile--lg {
+  min-height: 8.5em;
+}
+
+.tile--lg .tile__name { font-size: 1.12em; }
+
+.tile--sm {
+  min-height: 7em;
+  padding: 0.85em 1em;
+}
+
+.tile--sm .tile__top { margin-bottom: 0.4em; }
+.tile--sm .tile__name { font-size: 0.95em; }
+.tile--sm .tile__desc { font-size: 0.82em; }
+.tile--sm .tile__stats { padding-top: 0.6em; font-size: 0.78em; }
+
+/* ==========================================================================
+   Blogs
+   ========================================================================== */
+.blog-list {
+  list-style: none;
+  margin: 1.25em 0 1.5em;
+  padding: 0;
+}
+
+.page__content .blog-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 1.15em;
+  margin-bottom: 0.9em;
+  padding: 1.15em 1.35em;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+              transform 0.25s ease, background-color 0.25s ease;
+}
+
+.blog-item:hover {
+  border-color: var(--light-gray);
+  background: var(--card-hover-bg);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.blog-item__mark {
+  display: block;
+  width: 46px;
+  padding-top: 0.15em;
+}
+
+.blog-item__mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.blog-item__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2em 1em;
+  margin-bottom: 0.28em;
+}
+
+.blog-item__title {
+  font-size: 1.12em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.blog-item__title a {
+  color: inherit;
+}
+
+/* Whole card opens the post */
+.blog-item__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.page__content .blog-item__title a:hover {
   text-decoration: none;
-  padding: 0.3em 0.7em;
-  border: 1px solid var(--accent-color);
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  color: var(--link-color);
 }
 
-.opensource-links a:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-.opensource-links a i {
+.blog-item__head time {
+  flex-shrink: 0;
   font-size: 0.85em;
+  color: var(--muted-text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.page__content .blog-item__excerpt {
+  max-width: 42em;
+  margin: 0.3em 0 0;
+  font-size: 0.92em;
+  line-height: 1.6;
+  color: var(--dark-gray);
+}
+
+/* ==========================================================================
+   Blog post
+   ========================================================================== */
+.post-back {
+  font-size: 0.88em;
+}
+
+.post-header {
+  margin-bottom: 1.7em;
+  padding-bottom: 1.1em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post .post-title {
+  margin: 0 0 0.55em;
+  padding-bottom: 0;
+  border-bottom: none;
+  font-size: 2.15em;
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  color: var(--text-color);
+}
+
+/* The project name carries the title, the way the original piece set it */
+.post .post-title em {
+  font-style: italic;
+}
+
+/* All three byline lines share one size and one gap so they read as a block
+   rather than three separately-styled rows */
+.post .page__content .post-authors,
+.post .page__content .post-affiliation,
+.post .page__content .post-dateline {
+  margin: 0 0 0.35em;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.post .page__content .post-dateline {
+  margin-bottom: 0;
+}
+
+.post .page__content .post-authors {
+  color: var(--text-color);
+}
+
+.post .page__content .post-affiliation,
+.post .page__content .post-dateline {
+  color: var(--muted-text);
+}
+
+.post .page__content .post-dateline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2em 1.3em;
+}
+
+.post-dateline a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.post-dateline a i {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+/* Everything - prose and figures alike - shares one measure so the diagrams
+   line up with the column they belong to */
+.post .page__content > * {
+  max-width: 44em;
+}
+
+/* Reading column + sticky index */
+.post-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 3em;
+}
+
+.post-layout .page__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.post-toc {
+  position: sticky;
+  top: 5.5rem;
+  flex: 0 0 200px;
+  width: 200px;
+  max-height: calc(100vh - 9rem);
+  overflow-y: auto;
+  border-left: 1px solid var(--border-color);
+  scrollbar-width: none;
+}
+
+.post-toc::-webkit-scrollbar {
+  width: 0;
+}
+
+.post-toc__title {
+  margin: 0 0 1.1em;
+  padding-left: 1.15em;
+  font-size: 0.82em;
+  font-style: italic;
+  color: var(--muted-text);
+}
+
+.post-toc a {
+  display: block;
+  /* pulled left by the border width so the active marker sits on the rule */
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  font-weight: 400;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Sections carry the weight; sub-sections stay quiet and tight underneath,
+   with the gap above each section doing the grouping */
+.post-toc a.toc-h2 {
+  margin-top: 1.15em;
+  padding: 0.2em 0.5em 0.2em 1.15em;
+  font-size: 0.82em;
+  line-height: 1.4;
+  color: var(--dark-gray);
+}
+
+.post-toc a.toc-h2:first-of-type {
+  margin-top: 0;
+}
+
+.post-toc a.toc-h3 {
+  padding: 0.14em 0.5em 0.14em 1.9em;
+  font-size: 0.76em;
+  line-height: 1.4;
+  color: var(--muted-text);
+}
+
+.post-toc a:hover {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.post-toc a.is-active {
+  color: var(--text-color);
+  border-left-color: var(--accent-color);
+}
+
+.post-toc a.is-active.toc-h2 {
+  font-weight: 600;
+}
+
+
+/* The shared h2/h3 are section labels elsewhere on the site - a long read
+   needs headings that actually carry weight */
+.post .page__content h2 {
+  margin: 1.9em 0 0.55em;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.post .page__content h3 {
+  margin: 1.6em 0 0.45em;
+  font-size: 1.05em;
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.post-figure {
+  margin: 1.9em 0;
+}
+
+.post-figure__frame {
+  /* Shrinking a 940px diagram to phone width makes its labels unreadable,
+     so the frame pans instead */
+  overflow-x: auto;
+  padding: 1.1em;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  /* The diagrams are drawn on a light canvas, so they keep one in dark mode
+     rather than being inverted into something the author never designed */
+  background: #fff;
+}
+
+.post-figure img {
+  display: block;
+  width: 100%;
+  min-width: 680px;
+  height: auto;
+}
+
+.post-figure figcaption {
+  margin-top: 0.75em;
+  font-size: 0.85em;
+  line-height: 1.55;
+  color: var(--muted-text);
+}
+
+.post-refs {
+  margin: 0.6em 0 0;
+  padding-inline-start: 1.5em;
+  font-size: 0.86em;
+  line-height: 1.6;
+  color: var(--muted-text);
+}
+
+.post-refs li {
+  margin-bottom: 0.35em;
 }
 
 /* ==========================================================================
@@ -1215,6 +1664,16 @@ html.dark-theme .cv-logo {
 
 /* Medium screens */
 @media screen and (max-width: 924px) {
+  /* The index would squeeze the reading column here - drop it and let the
+     post run full width */
+  .post-toc {
+    display: none;
+  }
+
+  .post-layout {
+    display: block;
+  }
+
   #main {
     flex-direction: column;
     /* 3.5em is the sidebar/content column gutter; as vertical stacking it
@@ -1369,18 +1828,40 @@ html.dark-theme .cv-logo {
     padding: 1em 0;
   }
   
-  .opensource-item.with-logo {
-    flex-direction: column;
-    text-align: center;
+  /* Two tiles per row would leave the prose-width tiles unreadably narrow */
+  .tile--w7,
+  .tile--w5 {
+    grid-column: span 12;
   }
-  
-  .opensource-logo {
-    width: 90px;
-    margin: 0 auto 1em;
+
+  .tile--w4,
+  .tile--w3 {
+    grid-column: span 6;
   }
-  
-  .opensource-header {
-    justify-content: center;
+
+  .tile--xl,
+  .tile--lg,
+  .tile--sm {
+    min-height: 0;
+  }
+
+  .build-entry {
+    grid-template-columns: 38px 1fr;
+    gap: 0.9em;
+  }
+
+  .build-mark {
+    width: 38px;
+  }
+
+  .page__content .blog-item {
+    grid-template-columns: 38px 1fr;
+    gap: 0.9em;
+    padding: 1em 1.1em;
+  }
+
+  .blog-item__mark {
+    width: 38px;
   }
 
   .home-columns {
@@ -1434,6 +1915,34 @@ html.dark-theme .cv-logo {
 
   .news-timeline time {
     padding-top: 0;
+  }
+
+  /* Below ~480px even the quarter-width tiles stop holding a readable line */
+  .tile--w4,
+  .tile--w3 {
+    grid-column: span 12;
+  }
+
+  /* The logo column costs ~15% of the screen; drop it and keep the prose */
+  .build-entry {
+    grid-template-columns: 1fr;
+    gap: 0.55em;
+  }
+
+  .build-mark {
+    padding-top: 0;
+  }
+
+  .page__content .blog-item {
+    grid-template-columns: 1fr;
+    gap: 0.6em;
+  }
+
+  /* The link row wraps onto its own line here - right-aligning it there
+     leaves it stranded, so start it under the stats instead */
+  .tile__links {
+    width: 100%;
+    margin-left: 0;
   }
 }
 

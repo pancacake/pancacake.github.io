@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open-source | Bingxi Zhao</title>
-  <meta name="description" content="Open-source projects by Bingxi (Frank) Zhao, including DeepTutor and Litewrite.">
+  <meta name="description" content="Open-source projects by Bingxi Zhao — DeepTutor, CatchMe, nanobot, Litewrite and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -25,122 +25,203 @@
             </p>
           </div>
 
-          <h3>Lead</h3>
-          <div class="opensource-box">
-            <div class="opensource-item with-logo">
-              <div class="opensource-logo">
-                <a href="https://github.com/HKUDS/DeepTutor" target="_blank">
-                  <img src="/figs/Deeptutor-logo.png" alt="DeepTutor Logo">
-                </a>
+          <h3 id="map">Open-source map</h3>
+
+          <div class="mosaic">
+
+            <div class="tile tile--xl tile--w7" data-repo="HKUDS/DeepTutor">
+              <div class="tile__top">
+                <img class="tile__logo" src="/figs/Deeptutor-logo.png" alt="">
+                <span class="tile__role tile__role--lead">Lead</span>
               </div>
-              <div class="opensource-content">
-                <div class="opensource-header">
-                  <a href="https://github.com/HKUDS/DeepTutor" target="_blank" class="opensource-title">
-                    DeepTutor
-                  </a>
-                  <div class="github-badges">
-                    <a href="https://github.com/HKUDS/DeepTutor/stargazers" target="_blank">
-                      <img src="https://img.shields.io/github/stars/HKUDS/DeepTutor?style=social&cacheSeconds=3600" alt="GitHub stars">
-                    </a>
-                    <a href="https://github.com/HKUDS/DeepTutor/network/members" target="_blank">
-                      <img src="https://img.shields.io/github/forks/HKUDS/DeepTutor?style=social" alt="GitHub forks">
-                    </a>
-                  </div>
-                </div>
-                <p class="opensource-desc">Agent-native Personalizd Tutoring System.</p>
-              </div>
-            </div>
-            <div class="opensource-item with-logo">
-              <div class="opensource-logo">
-                <a href="https://github.com/HKUDS/CatchMe" target="_blank">
-                  <img src="/figs/catchme-logo.png" alt="CatchMe Logo">
-                </a>
-              </div>
-              <div class="opensource-content">
-                <div class="opensource-header">
-                  <a href="https://github.com/HKUDS/CatchMe" target="_blank" class="opensource-title">
-                    CatchMe
-                  </a>
-                  <div class="github-badges">
-                    <a href="https://hkuds.github.io/CatchMe/" target="_blank">
-                      <img src="https://img.shields.io/badge/Blog-↗-4c8bf5?style=flat-square" alt="Blog">
-                    </a>
-                    <a href="https://github.com/HKUDS/CatchMe/stargazers" target="_blank">
-                      <img src="https://img.shields.io/github/stars/HKUDS/CatchMe?style=social&cacheSeconds=3600" alt="GitHub stars">
-                    </a>
-                    <a href="https://github.com/HKUDS/CatchMe/network/members" target="_blank">
-                      <img src="https://img.shields.io/github/forks/HKUDS/CatchMe?style=social" alt="GitHub forks">
-                    </a>
-                  </div>
-                </div>
-                <p class="opensource-desc">Screen-aware recall and retrieval system for personalized AI agents.</p>
+              <span class="tile__name">
+                <a href="https://github.com/HKUDS/DeepTutor" target="_blank">DeepTutor</a>
+              </span>
+              <p class="tile__desc">Lifelong personalized tutoring — an agent-native workspace where chat, quizzes, research and practice all run on one loop.</p>
+              <div class="tile__stats">
+                <span class="tile__stat"><i class="fas fa-star"></i><b data-stat="stars">36k</b></span>
+                <span class="tile__stat"><i class="fas fa-code-branch"></i><b data-stat="forks">4.5k</b></span>
+                <span class="tile__lang" data-lang="Python">Python</span>
+                <span class="tile__links">
+                  <a href="https://deeptutor.info/" target="_blank"><i class="fas fa-book"></i>docs</a>
+                  <a href="https://pypi.org/project/deeptutor/" target="_blank"><i class="fab fa-python"></i>pypi</a>
+                  <a href="https://arxiv.org/abs/2604.26962" target="_blank"><i class="fas fa-file-lines"></i>paper</a>
+                </span>
               </div>
             </div>
+
+            <div class="tile tile--xl tile--w5" data-repo="HKUDS/nanobot">
+              <div class="tile__top">
+                <img class="tile__logo" src="/figs/nanobot-logo.png" alt="">
+                <span class="tile__role">Member</span>
+              </div>
+              <span class="tile__name">
+                <a href="https://github.com/HKUDS/nanobot" target="_blank">nanobot</a>
+              </span>
+              <p class="tile__desc">Self-hosted personal AI agent framework — tools, memory, MCP, multi-agent workflows.</p>
+              <div class="tile__stats">
+                <span class="tile__stat"><i class="fas fa-star"></i><b data-stat="stars">47k</b></span>
+                <span class="tile__stat"><i class="fas fa-code-branch"></i><b data-stat="forks">8.3k</b></span>
+                <span class="tile__lang" data-lang="Python">Python</span>
+                <span class="tile__links">
+                  <a href="https://nanobot.wiki" target="_blank"><i class="fas fa-book"></i>docs</a>
+                  <a href="https://pypi.org/project/nanobot-ai/" target="_blank"><i class="fab fa-python"></i>pypi</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="tile tile--lg tile--w5" data-repo="HKUDS/CatchMe">
+              <div class="tile__top">
+                <img class="tile__logo" src="/figs/catchme-logo.png" alt="">
+                <span class="tile__role tile__role--lead">Lead</span>
+              </div>
+              <span class="tile__name">
+                <a href="https://github.com/HKUDS/CatchMe" target="_blank">CatchMe</a>
+              </span>
+              <p class="tile__desc">Vectorless screen memory that makes your agents truly personal.</p>
+              <div class="tile__stats">
+                <span class="tile__stat"><i class="fas fa-star"></i><b data-stat="stars">468</b></span>
+                <span class="tile__stat"><i class="fas fa-code-branch"></i><b data-stat="forks">73</b></span>
+                <span class="tile__lang" data-lang="Python">Python</span>
+                <span class="tile__links">
+                  <a href="/blog/catchme.html"><i class="fas fa-pen-nib"></i>blog</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="tile tile--lg tile--w4" data-repo="HKUDS/Litewrite">
+              <div class="tile__top">
+                <img class="tile__logo" src="/figs/Litewrite.svg" alt="">
+                <span class="tile__role">Member</span>
+              </div>
+              <span class="tile__name">
+                <a href="https://github.com/HKUDS/Litewrite" target="_blank">Litewrite</a>
+              </span>
+              <p class="tile__desc">Vibe writing — draft faster, with the model in the sentence.</p>
+              <div class="tile__stats">
+                <span class="tile__stat"><i class="fas fa-star"></i><b data-stat="stars">159</b></span>
+                <span class="tile__stat"><i class="fas fa-code-branch"></i><b data-stat="forks">20</b></span>
+                <span class="tile__lang" data-lang="TypeScript">TypeScript</span>
+                <span class="tile__links">
+                  <a href="https://litewrite.ai/" target="_blank"><i class="fas fa-play"></i>demo</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="tile tile--sm tile--w3">
+              <div class="tile__top"><span class="tile__role">Personal</span></div>
+              <span class="tile__name">
+                <a href="https://github.com/pancacake/Smart-Car-Competition" target="_blank">Smart-Car-Competition</a>
+              </span>
+              <p class="tile__desc">FOC dual-driver control for an Infineon TC264 smart car.</p>
+              <div class="tile__stats">
+                <span class="tile__lang" data-lang="C">C</span>
+                <span class="tile__year">2025</span>
+              </div>
+            </div>
+
+            <div class="tile tile--sm tile--w4">
+              <div class="tile__top"><span class="tile__role">Personal</span></div>
+              <span class="tile__name">
+                <a href="https://github.com/pancacake/Academic-Support-System" target="_blank">Academic-Support-System</a>
+              </span>
+              <p class="tile__desc">Django study assistant — notes, mind maps and practice questions.</p>
+              <div class="tile__stats">
+                <span class="tile__lang" data-lang="Python">Django</span>
+                <span class="tile__year">2025</span>
+              </div>
+            </div>
+
+            <div class="tile tile--sm tile--w4">
+              <div class="tile__top"><span class="tile__role">Personal</span></div>
+              <span class="tile__name">
+                <a href="https://github.com/pancacake/Pose-Evaluation-System" target="_blank">Pose-Evaluation-System</a>
+              </span>
+              <p class="tile__desc">Per-limb movement scoring from video, with local-LLM feedback.</p>
+              <div class="tile__stats">
+                <span class="tile__lang" data-lang="Python">PyQt5</span>
+                <span class="tile__year">2025</span>
+              </div>
+            </div>
+
+            <div class="tile tile--sm tile--w4">
+              <div class="tile__top"><span class="tile__role">Personal</span></div>
+              <span class="tile__name">
+                <a href="https://github.com/pancacake/Model-Agent" target="_blank">Model-Agent</a>
+              </span>
+              <p class="tile__desc">Multi-agent solver that critiques its own math modelling attempts.</p>
+              <div class="tile__stats">
+                <span class="tile__lang" data-lang="Python">Python</span>
+                <span class="tile__year">2025</span>
+              </div>
+            </div>
+
           </div>
 
-          <h3>Member</h3>
-          <div class="opensource-box">
-            <div class="opensource-item with-logo">
-              <div class="opensource-logo">
-                <a href="https://github.com/HKUDS/nanobot" target="_blank">
-                  <img src="/figs/nanobot-logo.png" alt="nanobot Logo">
-                </a>
-              </div>
-              <div class="opensource-content">
-                <div class="opensource-header">
-                  <a href="https://github.com/HKUDS/nanobot" target="_blank" class="opensource-title">
-                    Nanobot
-                  </a>
-                  <div class="github-badges">
-                    <a href="https://nanobot.wiki" target="_blank">
-                      <img src="https://img.shields.io/badge/Docs-↗-4c8bf5?style=flat-square" alt="Docs">
-                    </a>
-                    <a href="https://github.com/HKUDS/nanobot/stargazers" target="_blank">
-                      <img src="https://img.shields.io/github/stars/HKUDS/nanobot?style=social&cacheSeconds=3600" alt="GitHub stars">
-                    </a>
-                    <a href="https://github.com/HKUDS/nanobot/network/members" target="_blank">
-                      <img src="https://img.shields.io/github/forks/HKUDS/nanobot?style=social" alt="GitHub forks">
-                    </a>
-                  </div>
-                </div>
-                <p class="opensource-desc">The ultra-lightweight personal AI agent.</p>
-              </div>
-            </div>
-            <div class="opensource-item with-logo">
-              <div class="opensource-logo">
-                <a href="https://github.com/HKUDS/Litewrite" target="_blank">
-                  <img src="/figs/Litewrite.svg" alt="Litewrite Logo">
-                </a>
-              </div>
-              <div class="opensource-content">
-                <div class="opensource-header">
-                  <a href="https://github.com/HKUDS/Litewrite" target="_blank" class="opensource-title">
-                    Litewrite
-                  </a>
-                  <div class="github-badges">
-                    <a href="https://litewrite.ai/" target="_blank">
-                      <img src="https://img.shields.io/badge/Live_Demo-↗-4c8bf5?style=flat-square" alt="Live Demo">
-                    </a>
-                    <a href="https://github.com/HKUDS/Litewrite/stargazers" target="_blank">
-                      <img src="https://img.shields.io/github/stars/HKUDS/Litewrite?style=social" alt="GitHub stars">
-                    </a>
-                    <a href="https://github.com/HKUDS/Litewrite/network/members" target="_blank">
-                      <img src="https://img.shields.io/github/forks/HKUDS/Litewrite?style=social" alt="GitHub forks">
-                    </a>
-                  </div>
-                </div>
-                <p class="opensource-desc">Vibe writing is coming — write faster and better.</p>
-              </div>
-            </div>
-          </div>
+          <h3>What I build</h3>
 
-          <h3>Personal Exercises</h3>
-          <ul class="personal-projects">
-            <li><a href="https://github.com/pancacake/Smart-Car-Competition" target="_blank"><strong>Smart-Car-Competition</strong></a> — FOC dual-driver smart car control system (Infineon TC264)</li>
-            <li><a href="https://github.com/pancacake/Academic-Support-System" target="_blank"><strong>Academic-Support-System</strong></a> — AI-driven academic learning assistant (Django)</li>
-            <li><a href="https://github.com/pancacake/Pose-Evaluation-System" target="_blank"><strong>Pose-Evaluation-System</strong></a> — 3D pose evaluation desktop app with local LLM (PyQt5)</li>
-            <li><a href="https://github.com/pancacake/Model-Agent" target="_blank"><strong>Model-Agent</strong></a> — Multi-agent math modeling assistant with iterative reasoning</li>
-          </ul>
+          <div class="build-story">
+
+            <article class="build-entry">
+              <a class="build-mark" href="https://github.com/HKUDS/DeepTutor" target="_blank" aria-hidden="true" tabindex="-1">
+                <img src="/figs/Deeptutor-logo.png" alt="">
+              </a>
+              <div class="build-text">
+                <p>
+                  <a href="https://github.com/HKUDS/DeepTutor" target="_blank"><strong>DeepTutor</strong></a>
+                  treats tutoring as one agent loop rather than a collection of features. Chat, Quiz,
+                  Research, Visualize, Solve and Mastery Path are objectives on the same loop, so
+                  knowledge bases, notebooks, question banks and personas stay addressable from any of
+                  them instead of being siloed per tool. Retrieval is pluggable across LlamaIndex,
+                  PageIndex, GraphRAG, LightRAG and linked Obsidian vaults, and an external coding CLI
+                  can be consulted as a subagent mid-turn. The learner model is three explicit layers —
+                  L1 traces, L2 summaries, L3 synthesis — exposed through a memory graph, so every
+                  inference the system draws about a learner is inspectable and editable rather than
+                  latent in a prompt.
+                </p>
+                <p class="build-meta" data-repo="HKUDS/DeepTutor">
+                  <span class="stat"><i class="fas fa-star"></i><b data-stat="stars">36k</b></span>
+                  <span class="stat"><i class="fas fa-code-branch"></i><b data-stat="forks">4.5k</b></span>
+                  <span class="build-links">
+                    <a href="https://github.com/HKUDS/DeepTutor" target="_blank"><i class="fab fa-github"></i>code</a>
+                    <a href="https://deeptutor.info/" target="_blank"><i class="fas fa-book"></i>docs</a>
+                    <a href="https://pypi.org/project/deeptutor/" target="_blank"><i class="fab fa-python"></i>pypi</a>
+                    <a href="https://arxiv.org/abs/2604.26962" target="_blank"><i class="fas fa-file-lines"></i>paper</a>
+                  </span>
+                </p>
+              </div>
+            </article>
+
+            <article class="build-entry">
+              <a class="build-mark" href="https://github.com/HKUDS/CatchMe" target="_blank" aria-hidden="true" tabindex="-1">
+                <img src="/figs/catchme-logo.png" alt="">
+              </a>
+              <div class="build-text">
+                <p>
+                  <a href="https://github.com/HKUDS/CatchMe" target="_blank"><strong>CatchMe</strong></a>
+                  argues that personal memory is a navigation problem, not a search problem. Six
+                  recorders capture GUI activity — window focus, keystrokes, mouse, screenshots,
+                  clipboard, notifications — and deterministic rules (window switches, idle timeouts,
+                  temporal clustering) fold them into a five-level tree: day → session → app → location
+                  → action. Structure is rule-based; content is LLM-summarised bottom-up as nodes close,
+                  incrementally rather than in an end-of-day batch. Retrieval carries no embedding
+                  index: a rule pass prunes by time, then an LLM traverses the tree, selecting multiple
+                  branches per level and reading raw evidence only where it needs to. That holds up on
+                  fragmented, cross-modal activity data where similarity search does not, in
+                  ~0.2&nbsp;GB locally, behind a single skill file any CLI agent can call.
+                </p>
+                <p class="build-meta" data-repo="HKUDS/CatchMe">
+                  <span class="stat"><i class="fas fa-star"></i><b data-stat="stars">468</b></span>
+                  <span class="stat"><i class="fas fa-code-branch"></i><b data-stat="forks">73</b></span>
+                  <span class="build-links">
+                    <a href="https://github.com/HKUDS/CatchMe" target="_blank"><i class="fab fa-github"></i>code</a>
+                    <a href="/blog/catchme.html"><i class="fas fa-pen-nib"></i>blog</a>
+                  </span>
+                </p>
+              </div>
+            </article>
+
+          </div>
 
         </section>
       </div>

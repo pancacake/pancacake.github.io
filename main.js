@@ -3,6 +3,8 @@
    ========================================================================== */
 
 import { initLayout } from './components.js';
+import { initRepoStats } from './repo-stats.js';
+import { initPostToc } from './post-toc.js';
 
 // Apply saved theme immediately before layout injection to prevent flash
 const savedTheme = localStorage.getItem('theme');
@@ -12,6 +14,12 @@ if (savedTheme === 'dark') {
 
 // Inject shared layout (masthead, sidebar, footer) + load external scripts
 initLayout();
+
+// Refresh the star/fork counts baked into the open-source page
+initRepoStats();
+
+// Build the sidebar index on blog posts
+initPostToc();
 
 // ==========================================================================
 // Theme Toggle (Light/Dark)
@@ -143,7 +151,9 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.paper-box, h1, .opensource-item').forEach(el => {
+// The mosaic is deliberately excluded: fading a whole grid in reads as a flash,
+// and it keeps the project list visible even if this script never runs.
+document.querySelectorAll('.paper-box, h1, .build-entry').forEach(el => {
   el.classList.add('reveal-on-scroll');
   observer.observe(el);
 });
